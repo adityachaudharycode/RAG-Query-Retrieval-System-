@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: hackrx-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements-fast.txt
+    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: API_BEARER_TOKEN
+        value: 87e1f87355284c19bac1880413d4a1e7cb868891939fc1c6d8227ee2c1b89cb0
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: EMBEDDING_PROVIDER
+        value: gemini
+      - key: GEMINI_MODEL
+        value: gemini-1.5-flash
+      - key: GEMINI_EMBEDDING_MODEL
+        value: models/embedding-001
+      - key: MAX_TOKENS
+        value: 4000
+      - key: TEMPERATURE
+        value: 0.1
+      - key: CHUNK_SIZE
+        value: 1024
+      - key: CHUNK_OVERLAP
+        value: 100
+      - key: LOG_LEVEL
+        value: INFO
+      - key: ENABLE_CACHE
+        value: true
+      - key: CACHE_TTL
+        value: 3600
+      - key: PERPLEXITY_API_KEY
+        sync: false
+      - key: PERPLEXITY_MODEL
+        value: sonar-large-chat
